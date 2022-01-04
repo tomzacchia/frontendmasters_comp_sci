@@ -6,28 +6,22 @@ import "./sort.css";
 
 function sort(nums) {
   // code goes here
-  let hasSwapBeenMade = true;
+  // code goes here
+  for (let i = 1; i < nums.length; i++) {
+    snapshot(nums);
+    let numberToInsert = nums[i];
+    let currentNumIndex;
 
-  // 1. loop while isSorted is false
-  do {
-    hasSwapBeenMade = false;
+    // shift all bigger numbers to the right
+    for (currentNumIndex = i - 1; currentNumIndex >= 0; currentNumIndex--) {
+      if (nums[currentNumIndex] < numberToInsert) break;
 
-    // 2. compare two index values
-    for (let i = 0; i < nums.length; i++) {
-      snapshot(nums);
-      let isEndOfArray = i === nums.length - 1;
-      if (isEndOfArray) break;
-
-      let current = nums[i];
-      let next = nums[i + 1];
-
-      if (current > next) {
-        nums[i] = next;
-        nums[i + 1] = current;
-        hasSwapBeenMade = true;
-      }
+      nums[currentNumIndex + 1] = nums[currentNumIndex];
     }
-  } while (hasSwapBeenMade);
+
+    // insert numberToInsert
+    nums[currentNumIndex + 1] = numberToInsert;
+  }
 
   snapshot(nums);
 }
