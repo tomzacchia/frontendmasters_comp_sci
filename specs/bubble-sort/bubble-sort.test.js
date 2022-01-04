@@ -15,7 +15,7 @@ function bubbleSort(nums) {
   let hasSwapBeenMade = true;
 
   // 1. loop while isSorted is false
-  while (hasSwapBeenMade) {
+  do {
     hasSwapBeenMade = false;
 
     // 2. compare two index values
@@ -32,7 +32,7 @@ function bubbleSort(nums) {
         hasSwapBeenMade = true;
       }
     }
-  }
+  } while (hasSwapBeenMade);
 
   // 3. return sorted array
   return nums;
