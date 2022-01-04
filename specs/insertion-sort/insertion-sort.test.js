@@ -15,12 +15,29 @@
 
 function insertionSort(nums) {
   // code goes here
+  for (let i = 1; i < nums.length; i++) {
+    let numberToInsert = nums[i];
+    let currentNumIndex;
+
+    // shift all bigger numbers to the right
+    for (currentNumIndex = i - 1; currentNumIndex >= 0; currentNumIndex--) {
+      if (nums[currentNumIndex] < numberToInsert) break;
+
+      nums[currentNumIndex + 1] = nums[currentNumIndex];
+    }
+
+    // insert numberToInsert
+    nums[currentNumIndex + 1] = numberToInsert;
+  }
+
+  return nums;
 }
 
 // unit tests
 // do not modify the below code
-test.skip("insertion sort", function () {
+test("insertion sort", function () {
   const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
   insertionSort(nums);
+  console.log(nums);
   expect(nums).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
 });
