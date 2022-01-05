@@ -16,14 +16,14 @@ function nestedAdd(array) {
     const current = array[i];
     // base case, isArray recurse or isNumber add to sum
     if (Array.isArray(current)) {
-      sum += nestedAdd(curent);
+      sum += nestedAdd(current);
     } else sum += current;
   }
 
   return sum;
 }
 
-test.skip("nested arrays addition", () => {
+test("nested arrays addition", () => {
   expect(nestedAdd([1, 2, 3])).toEqual(6);
   expect(nestedAdd([1, [2], 3])).toEqual(6);
   expect(nestedAdd([[[[[[[[[5]]]]]]]]])).toEqual(5);
