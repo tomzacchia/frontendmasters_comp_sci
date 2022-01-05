@@ -10,6 +10,8 @@
 const mergeSortedSubarrays = (left, right) => {
   let sortedArray = [];
 
+  // alternative: two pointers and 2 for loops
+
   while (left.length && right.length) {
     if (left[0] <= right[0]) {
       sortedArray.push(left.shift());
