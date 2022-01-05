@@ -10,7 +10,17 @@
  */
 
 function nestedAdd(array) {
-  // write code here
+  let sum = 0;
+
+  for (let i = 0; i < array.length; i++) {
+    const current = array[i];
+    // base case, isArray recurse or isNumber add to sum
+    if (Array.isArray(current)) {
+      sum += nestedAdd(curent);
+    } else sum += current;
+  }
+
+  return sum;
 }
 
 test.skip("nested arrays addition", () => {
