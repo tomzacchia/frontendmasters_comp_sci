@@ -17,13 +17,60 @@
   you work
 */
 
+const { throwStatement } = require("@babel/types");
+
 class ArrayList {
   // code goes here
+  constructor() {
+    // instantiate all variables
+    this.data = {};
+    this.length = 0;
+  }
+
+  push(value) {
+    // add an item to end of array
+    this.data[this.length] = value;
+    this.length++;
+  }
+
+  pop() {
+    // remove last items and return it
+    const value = this.data[this.length - 1];
+    delete this.data[this.length - 1];
+    this.length--;
+
+    return value;
+  }
+
+  get(index) {
+    // returns value at index
+    return this.data[index];
+  }
+
+  delete(index) {
+    // return item from array and reindex values
+    const response = this.data[index];
+
+    this._collapseTo(index);
+
+    return response;
+  }
+
+  _collapseTo(index) {
+    // shift all to left starting at index
+    for (let i = index; i < this.length; i++) {
+      this.data[i] = this.data[i + 1];
+    }
+
+    // delete last value & index since it already shifted
+    delete this.data[this.length - 1];
+    this.length--;
+  }
 }
 
 // unit tests
 // do not modify the below code
-describe.skip("ArrayList", function () {
+describe("ArrayList", function () {
   const range = (length) =>
     Array.apply(null, { length: length }).map(Number.call, Number);
   const abcRange = (length) =>
