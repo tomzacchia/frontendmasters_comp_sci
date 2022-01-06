@@ -10,17 +10,19 @@
 */
 
 //  number = 1391, place = 0th place, longestNumber = 4 (number of digits of biggest number)
+// 0th place => 1, 10th's place => 9
 // longestNumber --> used to return zero when number, say 1, does not have a 10th or 100th's digit
 //  returns 1
-function getDigitAtPlaceValue(number, place, longestNumber) {
+function getDigitAtPlaceValue(number, placeValue, longestNumber) {
   // handle default case, current number of digits < longestNumber
-  const numberOfDigits = number.toString().length;
+  const string = number.toString();
+  const size = string.length;
 
-  if (place >= numberOfDigits) return 0;
+  const mod = longestNumber - size;
 
-  const numberReversed = number.toString().split("").reverse().join("");
-
-  return parseInt(numberReversed[place]);
+  // placeValue starts at longestNumber and decrements with each for loop
+  // if we try to get the 10th place digit of a single digit number, string[-negative] returns 0
+  return string[placeValue - mod] || 0;
 }
 
 // returns 4 in this example
@@ -52,7 +54,7 @@ function radixSort(array) {
   }
 
   // for loop for number of interations, based on longestNumber
-  for (let placeValue = 0; placeValue < longestNumber; placeValue++) {
+  for (let placeValue = longestNumber - 1; placeValue >= 0; placeValue--) {
     // enqueue numbers into buckets
     while (array.length) {
       const number = array.shift();
